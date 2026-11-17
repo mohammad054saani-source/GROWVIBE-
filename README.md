@@ -1,4 +1,3 @@
-git clone https://github.com/mohamnad054saani/growvibe.git
-cd growvibe
-mkdir frontend backend database storage docs
-touch README.md
+git clone https://github.com/mohammad054saani-source/GROWVIBE-.git
+cd GROWVIBE-
+mkdir -p frontend backend database storage docs
