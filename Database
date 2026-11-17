@@ -1,1 +1,23 @@
-database/.keep
+-- GROWVIBE v1.0 - Database - NEVER DELETE, ONLY ADD
+
+create table users (
+  id uuid primary key default gen_random_uuid(),
+  username text unique not null,
+  email text unique not null,
+  full_name text,
+  bio text,
+  avatar_url text,
+  followers_count int default 0,
+  created_at timestamp default now()
+);
+
+create table posts (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references users(id),
+  text text,
+  image_url text,
+  video_url text,
+  likes_count int default 0,
+  comments_count int default 0,
+  created_at timestamp default now()
+);database/.keep
