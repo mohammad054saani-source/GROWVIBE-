@@ -1,1 +1,4 @@
-Box 2 - Brain (Supabase functions)
+Backend = Brain
+Supabase project: growvibe
+Tables: users, posts, follows, likes, comments
+Rule: NEVER delete a table, only addBox 2 - Brain (Supabase functions)
