@@ -20,4 +20,4 @@ create table posts (
   likes_count int default 0,
   comments_count int default 0,
   created_at timestamp default now()
-);database/.keep
+);
