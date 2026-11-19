@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GROWVIBE - My Profile</title>
+<style>
+body{background:black;color:white;text-align:center;font-family:Arial;padding:20px}
+h1{color:#a3e635;font-size:40px}
+p{color:#ccc}
+button{background:#a3e635;color:black;border:none;padding:10px 20px;width:auto;margin:10px;font-size:16px;font-weight:bold;border-radius:10px}
+.white{background:white}
+.box{background:#111;border:1px solid #a3e635;border-radius:10px;padding:15px;margin:10px auto;width:90%}
+</style>
+</head>
+<body>
+<h1>GROWVIBE</h1>
+<p>Don't just post. Grow.</p>
+<p>My Profile</p>
+<div class="box">
+<p style="font-size:28px">👤</p>
+<p id="name">GROWVIBE Creator</p>
+<p id="email" style="font-size:14px">Your email will show after login</p>
+<p style="font-size:14px">Posts: <span id="count">...</span></p>
+</div>
+<button onclick="loadProfile()">Refresh Profile</button><br>
+<button class="white" onclick="goHome()">Back to Home</button>
+<p style="font-size:12px;color:#888">v1.0 - Small creators get seen first.</p>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+const SUPABASE_URL = "PASTE_YOUR_URL_HERE";
+const SUPABASE_KEY = "PASTE_YOUR_ANON_KEY_HERE";
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+async function loadProfile(){
+let { data } = await supabaseClient.from("posts").select("*");
+document.getElementById("count").innerText = data ? data.length : "0";
+}
+function goHome(){ window.location.href = "home.html"; }
+loadProfile();
+</script>
+</body>
+</html>
