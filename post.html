@@ -29,7 +29,7 @@ async function savePost(){
 let text = document.getElementById("postText").value;
 if(!text){ document.getElementById("msg").innerText = "Write something first."; return; }
 document.getElementById("msg").innerText = "Posting...";
-let { error } = await supabaseClient.from("posts").insert([{ content: text }]);
+let { error } = await supabaseClient.from("posts"). insert([{ text: text }]);
 if(error){ document.getElementById("msg").innerText = "Error: " + error.message; }
 else{ document.getElementById("msg").innerText = "Posted! Welcome to GROWVIBE."; document.getElementById("postText").value = ""; }
 }
