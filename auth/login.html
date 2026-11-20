@@ -37,6 +37,7 @@ async function login(){
   const password=document.getElementById('password').value;
   const {error}=await sb.auth.signInWithPassword({email,password});
   document.getElementById('msg').innerText=error?error.message:'Login Success! Welcome to GROWVIBE.';
+  if(!error){ setTimeout(function(){ window.location.href="../home.html"; },1000); }
 }
 </script>
 </body>
