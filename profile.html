@@ -33,6 +33,11 @@ async function loadProfile(){
 let { data } = await supabaseClient.from("posts").select("*");
 document.getElementById("count").innerText = data ? data.length : "0";
 }
+  let { data: userData } = await supabaseClient.auth.getUser();
+if(userData && userData.user && userData.user.email){
+document.getElementById("email").innerText = userData.user.email;
+document.getElementById("name").innerText = userData.user.email.split("@")[0];
+}
 function goHome(){ window.location.href = "home.html"; }
 loadProfile();
 </script>
