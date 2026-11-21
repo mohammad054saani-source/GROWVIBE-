@@ -27,6 +27,9 @@ const SUPABASE_KEY = "sb_publishable_uMbzDNypMhww4KtuBbbjGg_OzOgkI7W";
 const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 async function savePost(){
 let text = document.getElementById("postText").value;
+  let bad = ["badword1","badword2","badword3"];
+bad.forEach(function(w){ text = text.split(w).join("****"); });
+if(text.toLowerCase().includes("sex") || text.toLowerCase().includes("porn")){ document.getElementById("msg").innerText = "Please use nice words."; return; }
 if(!text){ document.getElementById("msg").innerText = "Write something first."; return; }
 document.getElementById("msg").innerText = "Posting...";
 let { error } = await supabaseClient.from("posts"). insert([{ text: text }]);
