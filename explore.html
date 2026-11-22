@@ -34,6 +34,8 @@ if(!data || data.length===0){ document.getElementById("posts").innerHTML = "No p
 let html = "";
 data.forEach(function(post, i){
 let t = post.text || "";
+  let mediaHtml = "";
+if(post.media_url){ if(post.media_url.includes(".mp4") || post.media_url.includes("video")){ mediaHtml = '<br><video src="'+post.media_url+'" controls style="width:100%;border-radius:10px"></video>'; } else { mediaHtml = '<br><img src="'+post.media_url+'" style="width:100%;border-radius:10px">'; } }
 html += '<div class="card" id="c'+i+'">' + t.replace(/</g,"&lt;") + '<br><br><span class="small" onclick="document.getElementById(\'c'+i+'\').classList.toggle(\'open\')">Show more / Show less</span><br><br><input id="cm'+i+'" placeholder="Write a comment..." style="width:70%;padding:8px;border-radius:8px;border:none"><button onclick="addComment(\''+post.id+'\',\'cm'+i+'\')" style="padding:8px 10px">Comment</button><div id="comments'+i+'" style="font-size:13px;margin-top:8px"></div></div>';
 });
 document.getElementById("posts").innerHTML = html;
