@@ -38,6 +38,14 @@ html += '<div class="card" id="c'+i+'">' + t.replace(/</g,"&lt;") + '<br><br><sp
 });
 document.getElementById("posts").innerHTML = html;
 }
+async function addComment(postId, inputId){
+let txt = document.getElementById(inputId).value;
+if(!txt){ return; }
+let { error } = await supabaseClient.from("comments").insert([{ post_id: postId, text: txt }]);
+if(error){ alert("Error: " + error.message); return; }
+document.getElementById(inputId).value = "";
+alert("Comment posted!");
+}
 function goHome(){ window.location.href = "home.html"; }
 loadPosts();
 </script>
