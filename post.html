@@ -33,6 +33,13 @@ bad.forEach(function(w){ text = text.split(w).join("****"); });
 if(text.toLowerCase().includes("sex") || text.toLowerCase().includes("porn")){ document.getElementById("msg").innerText = "Please use nice words."; return; }
 if(!text){ document.getElementById("msg").innerText = "Write something first."; return; }
 document.getElementById("msg").innerText = "Posting...";
+let mediaUrl = "";
+let file = document.getElementById("mediaFile").files[0];
+if(file){
+let fileName = Date.now() + "_" + file.name;
+let { error: upErr } = await supabaseClient.storage.from("media").upload(fileName, file);
+if(!upErr){ let { data: urlData } = supabaseClient.storage.from("media").getPublicUrl(fileName); mediaUrl = urlData.publicUrl; }
+}
 let { error } = await supabaseClient.from("posts"). insert([{ text: text }]);
 if(error){ document.getElementById("msg").innerText = "Error: " + error.message; }
 else{ document.getElementById("msg").innerText = "Posted! Welcome to GROWVIBE."; document.getElementById("postText").value = ""; }
